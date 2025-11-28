@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* optional: tambahin sedikit reset sendiri */
+* {
+  box-sizing: border-box;
+}
