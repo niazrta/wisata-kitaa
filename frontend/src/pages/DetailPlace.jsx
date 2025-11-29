@@ -145,8 +145,8 @@ const DetailPlace = () => {
          </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
-        <div className="bg-white rounded-xl shadow-xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-0 -mt-10 relative pt-14 z-10">
+        <div className="bg-gray-200 rounded-xl shadow-xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Main Content */}
           <div className="md:col-span-2">

@@ -18,7 +18,13 @@ export const getAllPlaces = async (req, res) => {
 // 2. Ambil Wisata Populer
 export const getPopularPlaces = async (req, res) => {
     try {
-        const { data, error } = await supabase.from('places').select('*').limit(3);
+        // Ambil dari VIEW, bukan tabel 'places' biasa
+        // View ini sudah otomatis mengurutkan dari like terbanyak
+        const { data, error } = await supabase
+            .from('popular_places_view') 
+            .select('*')
+            .limit(3); // Ambil Top 3
+
         if (error) throw error;
         res.status(200).json(data);
     } catch (err) {
