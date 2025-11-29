@@ -7,18 +7,19 @@ import About from './pages/About';
 import AddPlace from './pages/AddPlace';
 import DetailPlace from './pages/DetailPlace';
 import EditPlace from './pages/EditPlace'; 
-import DetailEvent from './pages/DetailEvent'; // <--- Import ini
+import DetailEvent from './pages/DetailEvent';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Favorites from './pages/Favorites';
 
-
 function App() {
   return (
-    <div className="bg-gray-50 min-h-screen pb-20 md:pb-0">
+    // Mengubah background menjadi sedikit lebih abu-abu untuk kontras
+    <div className="bg-slate-50 min-h-screen text-slate-800 font-sans pb-20 md:pb-0">
       <Navbar />
-      <div className="max-w-4xl mx-auto p-4 pt-20">
+      {/* Mengubah max-w-4xl menjadi max-w-7xl agar lebih luas */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

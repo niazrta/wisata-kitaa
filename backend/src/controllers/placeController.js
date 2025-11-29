@@ -118,3 +118,48 @@ export const deletePlace = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+export const getReviewsByPlaceId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Asumsi: Anda punya tabel 'reviews' dan tabel 'profiles' (atau users) yang terhubung
+        // select('*, profiles(username, avatar_url)') digunakan jika ada relasi
+        const { data, error } = await supabase
+            .from('reviews')
+            .select('*') // Ubah jadi .select('*, profiles(username)') jika ingin nama user
+            .eq('place_id', id)
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+export const addReview = async (req, res) => {
+    const { id } = req.params; // place_id
+    const { rating, comment } = req.body;
+    const userId = req.user.id; // Dari middleware verifyToken
+
+    if (!rating || !comment) {
+        return res.status(400).json({ error: "Rating dan komentar wajib diisi" });
+    }
+
+    try {
+        const { data, error } = await supabase
+            .from('reviews')
+            .insert([{ 
+                place_id: id, 
+                user_id: userId, 
+                rating: parseInt(rating), 
+                comment 
+            }])
+            .select();
+
+        if (error) throw error;
+        res.status(201).json(data[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
